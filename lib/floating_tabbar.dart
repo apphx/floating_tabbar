@@ -47,7 +47,7 @@ class FloatingTabBar extends StatefulWidget {
   final double? minExtendedWidth;
 
   /// Corner radius of tab bar
-  final double? cornerRadius;
+  final double cornerRadius;
 
   const FloatingTabBar({
     Key? key,
@@ -65,7 +65,7 @@ class FloatingTabBar extends StatefulWidget {
     this.showTabLabelsForNonFloating = false,
     this.showTabLabelsForFloating = false,
     this.nauticsFooter,
-    this.cornerRadius
+    this.cornerRadius = 50
   }) : super(key: key);
   @override
   FloatingTabBarState createState() => FloatingTabBarState();
@@ -148,11 +148,11 @@ class FloatingTabBarState extends State<FloatingTabBar> {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 50),
           child: Material(
-            borderRadius: BorderRadius.circular(widget.cornerRadius ?? 50),
-            elevation: 35,
+            borderRadius: BorderRadius.circular(widget.cornerRadius),
+            elevation: 5,
             color: widget.backgroundColor,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(widget.cornerRadius ?? 50),
+              borderRadius: BorderRadius.circular(widget.cornerRadius),
               child: CupertinoTabBar(
                 backgroundColor: widget.backgroundColor,
                 border: const Border(
