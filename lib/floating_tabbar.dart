@@ -46,6 +46,9 @@ class FloatingTabBar extends StatefulWidget {
   /// Minimum extension width for NavigationRail which is used in large screens.
   final double? minExtendedWidth;
 
+  /// Corner radius of tab bar
+  final double? cornerRadius;
+
   const FloatingTabBar({
     Key? key,
     required this.children,
@@ -62,6 +65,7 @@ class FloatingTabBar extends StatefulWidget {
     this.showTabLabelsForNonFloating = false,
     this.showTabLabelsForFloating = false,
     this.nauticsFooter,
+    this.cornerRadius
   }) : super(key: key);
   @override
   FloatingTabBarState createState() => FloatingTabBarState();
@@ -144,11 +148,11 @@ class FloatingTabBarState extends State<FloatingTabBar> {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 50),
           child: Material(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(widget.cornerRadius ?? 50),
             elevation: 35,
             color: widget.backgroundColor,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(widget.cornerRadius ?? 50),
               child: CupertinoTabBar(
                 backgroundColor: widget.backgroundColor,
                 border: const Border(
@@ -158,7 +162,7 @@ class FloatingTabBarState extends State<FloatingTabBar> {
                   top: BorderSide.none,
                 ),
                 currentIndex: _selectedIndex,
-                iconSize: 35,
+                iconSize: 24,
                 items: getBottomNavigationBarItemIconWithBadge(
                     showTabLabels: widget.showTabLabelsForFloating!),
                 onTap: (index) => _onItemTap(index),
